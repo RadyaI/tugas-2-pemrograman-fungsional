@@ -11,6 +11,7 @@ from lib.index import (
     ambil_kolom,
     hitung_rata_rata,
     cari_terbesar,
+    hapus_transaksi,
 )
 
 # APLIKASI 1
@@ -24,16 +25,17 @@ from lib.index import (
 # - Function 5 (ambil_kolom): mengambil kolom jumlah dari data pengeluaran
 # - Function 6 (hitung_rata_rata): menghitung rata-rata per transaksi
 # - Function 7 (cari_terbesar): mencari pengeluaran terbesar
+# - Function 10 (hapus_transaksi): membatalkan pengeluaran yang salah catat berdasarkan ID
 
 data_mentah = [
-    {"nama": "Makan siang",    "kategori": "Makanan",      "jumlah": "25000"},
-    {"nama": "Ojek online",    "kategori": "Transportasi", "jumlah": "18000"},
-    {"nama": "Kopi",           "kategori": "Makanan",      "jumlah": "22000"},
-    {"nama": "Bensin",         "kategori": "Transportasi", "jumlah": "50000"},
-    {"nama": "Nonton bioskop", "kategori": "Hiburan",      "jumlah": "45000"},
-    {"nama": "Makan malam",    "kategori": "Makanan",      "jumlah": "30000"},
-    {"nama": "Buku catatan",   "kategori": "Pendidikan",   "jumlah": "abc"},
-    {"nama": "Fotokopi",       "kategori": "Pendidikan",   "jumlah": "5000"},
+    {"id": 1, "nama": "Makan siang",    "kategori": "Makanan",      "jumlah": "25000"},
+    {"id": 2, "nama": "Ojek online",    "kategori": "Transportasi", "jumlah": "18000"},
+    {"id": 3, "nama": "Kopi",           "kategori": "Makanan",      "jumlah": "22000"},
+    {"id": 4, "nama": "Bensin",         "kategori": "Transportasi", "jumlah": "50000"},
+    {"id": 5, "nama": "Nonton bioskop", "kategori": "Hiburan",      "jumlah": "45000"},
+    {"id": 6, "nama": "Makan malam",    "kategori": "Makanan",      "jumlah": "30000"},
+    {"id": 7, "nama": "Buku catatan",   "kategori": "Pendidikan",   "jumlah": "abc"},
+    {"id": 8, "nama": "Fotokopi",       "kategori": "Pendidikan",   "jumlah": "5000"},
 ]
 
 # 1. Validasi input (pakai Function 1), buang yang tidak valid
@@ -70,3 +72,13 @@ print("\nRata-rata per transaksi: Rp", f"{hitung_rata_rata(semua_jumlah):,.2f}")
 # 5. Pengeluaran terbesar (Function 7)
 terbesar = cari_terbesar(data, "jumlah")
 print("Pengeluaran terbesar:", terbesar["nama"], "- Rp", f"{terbesar['jumlah']:,.0f}")
+
+# 6. Batalkan transaksi ID 4 karena salah catat (Function 10), lalu hitung ulang
+data = hapus_transaksi(data, 4)
+jumlah_baru = ambil_kolom(data, "jumlah")
+terbesar_baru = cari_terbesar(data, "jumlah")
+
+print("\nSetelah transaksi 'Bensin' dibatalkan:")
+print("Total pengeluaran: Rp", f"{hitung_total(jumlah_baru):,.0f}")
+print("Rata-rata per transaksi: Rp", f"{hitung_rata_rata(jumlah_baru):,.2f}")
+print("Pengeluaran terbesar:", terbesar_baru["nama"], "- Rp", f"{terbesar_baru['jumlah']:,.0f}")
