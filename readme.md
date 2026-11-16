@@ -2,10 +2,6 @@
 
 Library fungsi Python dengan gaya pemrograman fungsional (`map`, `filter`, `reduce`) beserta 5 aplikasi yang memakainya.
 
-# Tugas 2 - Pemrograman Fungsional
-
-Library fungsi Python dengan gaya pemrograman fungsional (`map`, `filter`, `reduce`) beserta 5 aplikasi yang memakainya.
-
 ## Anggota Kelompok
 
 | No | Nama                    | NIM             |
